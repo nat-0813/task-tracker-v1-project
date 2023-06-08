@@ -54,21 +54,20 @@ function newElement() {
     }
   }
 }
-//created variables for each package
+
+
+// //created variables for each package
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-
 //creating instance for express-package we grab from node modules
 const app = express();
-
 //creating port for server
 const port = 6000;
-
-//middleware to parse request bodies as JSON
+// //middleware to parse request bodies as JSON
 app.use(bodyParser.json());
 
-// Endpoint to get all tasks from the file
+// // Endpoint to get all tasks from the file
 app.get('/tasks', (req, res) => {
   fs.readFile('tasks.txt', 'utf8', (err, data) => {
     if (err) {
@@ -79,24 +78,22 @@ app.get('/tasks', (req, res) => {
     }
   });
 });
-
-// Endpoint to add a new task to the file
+// // Endpoint to add a new task to the file
 app.post('/tasks', (req, res) => {
   const newTask = req.body;
-  // Validate the new task data
   if (!newTask || !newTask.title || !newTask.description) {
     res.sendStatus(400);
     return;
   }
 
-  fs.readFile('tasks.json', 'utf8', (err, data) => {
+  fs.readFile('tasks.txt', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       res.sendStatus(500);
     } else {
       const tasks = JSON.parse(data);
       tasks.push(newTask);
-      fs.writeFile('tasks.json', JSON.stringify(tasks), 'utf8', (err) => {
+      fs.writeFile('tasks.txt', JSON.stringify(tasks), 'utf8', (err) => {
         if (err) {
           console.error(err);
           res.sendStatus(500);
@@ -108,18 +105,18 @@ app.post('/tasks', (req, res) => {
   });
 });
 
-// Endpoint to delete a task from the file
+// // Endpoint to delete a task from the file
 app.delete('/tasks/:taskId', (req, res) => {
   const taskId = req.params.taskId;
 
-  fs.readFile('tasks.json', 'utf8', (err, data) => {
+  fs.readFile('tasks.txt', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       res.sendStatus(500);
     } else {
       const tasks = JSON.parse(data);
       const updatedTasks = tasks.filter((task) => task.id !== taskId);
-      fs.writeFile('tasks.json', JSON.stringify(updatedTasks), 'utf8', (err) => {
+      fs.writeFile('tasks.txt', JSON.stringify(updatedTasks), 'utf8', (err) => {
         if (err) {
           console.error(err);
           res.sendStatus(500);
@@ -131,27 +128,21 @@ app.delete('/tasks/:taskId', (req, res) => {
   });
 });
 
-// Endpoint to update a task in the file
 app.put('/tasks/:taskId', (req, res) => {
   const taskId = req.params.taskId;
   const updatedTask = req.body;
 
-  fs.readFile('tasks.json', 'utf8', (err, data) => {
+  fs.readFile('tasks.txt', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       res.sendStatus(500);
     } else {
       const tasks = JSON.parse(data);
       const index = tasks.findIndex((task) => task.id === taskId);
-      if (index === -1) {
-        res.sendStatus(404);
-      } else {
-        tasks[index] = updatedTask;
-        fs.writeFile('tasks.json', JSON.stringify(tasks)
 
-
-
-
+    }
+  });
+});
 
 
 
