@@ -1,5 +1,5 @@
  let tasks = [
-    {id:1, task: ""},
-    {id:2, task: "Item 2"},
-    {id:3, task: "Item 3"},
+    {id:1, task: "cooking"},
+    {id:2, task: "cleaning"},
+    {id:3, task: "laundry"},
 ];
