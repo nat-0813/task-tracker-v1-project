@@ -7,3 +7,6 @@
 //get all tasks from file using get method
 // use post method then readfile to read tasks txt file; if there is an error send an err status else parse data and push new task else send err message
 //use delete method
+
+DIFFICULTY
+Couldnt figure out how to get txt to connect for js to do the actions of deleting
